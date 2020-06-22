@@ -3,9 +3,11 @@
 namespace App\Repositories;
 
 use App\Models\User;
+// use App\Repositories\UserRepositoryInterface;
+
 use Illuminate\Database\Eloquent\Model;
 
-class UserRepository 
+class UserRepository implements UserRepositoryInterface
 {
     /**
      * Return all user formated value
@@ -19,12 +21,12 @@ class UserRepository
 
     /**
      * Return user by user_id
-     * 
+     *
      * @param $id -> user id
      */
     public function findById($id)
     {
-        return User::where('id',$id)
+        return User::where('id', $id)
             ->with('address')
             ->firstOrFail()
             ->format();
@@ -32,8 +34,8 @@ class UserRepository
 
     /**
      * Find user by id and update name
-     * 
-     * @param $id -> user id 
+     *
+     * @param $id -> user id
      */
     public function update($id)
     {
@@ -43,12 +45,11 @@ class UserRepository
     
     /**
      * Delete user by id
-     * 
-     * @param $id -> user id 
+     *
+     * @param $id -> user id
      */
     public function delete($id)
     {
         return User::where('id', $id)->delete();
     }
-
 }

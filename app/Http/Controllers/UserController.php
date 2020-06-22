@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Repositories\UserRepository;
+use App\Repositories\UserRepositoryInterface;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
     private $userRepository;
-    public function __construct(UserRepository $userRepository) 
+    public function __construct(UserRepositoryInterface $userRepository) 
     {
         $this->userRepository = $userRepository;
     }
